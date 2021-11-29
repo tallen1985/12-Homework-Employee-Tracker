@@ -1,0 +1,31 @@
+{
+  "name": "12-homework-employee-tracker",
+  "version": "1.0.0",
+  "description": "NodeJS project utilizing mySQL",
+  "main": "server.js",
+  "scripts": {
+    "test": "test",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tallen1985/12-Homework-Employee-Tracker.git"
+  },
+  "keywords": [
+    "NodeJS",
+    "MySQL",
+    "CRUD",
+    "Console.table"
+  ],
+  "author": "Troy Allen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tallen1985/12-Homework-Employee-Tracker/issues"
+  },
+  "homepage": "https://github.com/tallen1985/12-Homework-Employee-Tracker#readme",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "inquirer": "^8.2.0",
+    "mysql2": "^2.3.3"
+  }
+}
