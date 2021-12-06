@@ -18,6 +18,17 @@ const viewAllDepartments = async () => {
     return rows
 }
 
+const viewEmployeesByManager = async () => {
+    const [rows, fields] = await pool.query("select CONCAT(managers.first_name,' ', managers.last_name) as 'Manager Name', employees.first_name, employees.last_name from employees left join employees as managers on employees.manager_id = managers.id order by managers.id"); 
+
+    return rows
+}
+const viewSalariesByDepartment = async () => {
+    const [rows, fields] = await pool.query("select departments.name as 'Dept. Name', sum(role.salary) as 'Total Salary' from role Join departments on role.department_id = departments.id group by departments.name")
+
+    return rows;
+}
+
 const getDeptNames = async () => {
     const [rows, fields] = await pool.query('SELECT name FROM departments')
     const deptArray = []
@@ -50,7 +61,10 @@ module.exports = {
    viewAllEmployees,
    viewAllRoles,
    viewAllDepartments,
+   viewEmployeesByManager,
+   viewSalariesByDepartment,
    getDeptNames, 
    getRoleNames,
-   getEmployeeNames
+   getEmployeeNames,
+   
 }

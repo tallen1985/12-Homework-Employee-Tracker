@@ -27,7 +27,6 @@ const addRole = async () => {
     ])
     
     const {title, salary, dept} = response;
-    console.log(response)
     const [rows, fields] = await pool.query('INSERT INTO role(title, salary, department_id) VALUES (?,?,?)', [title, salary, dept])
 
     console.log(`successfully added ${title} to Roles`)

@@ -12,19 +12,19 @@ function queryDB(answer) {
 
     if(answer === "View All Employees"){
         viewQueries.viewAllEmployees().then(result => {
-            console.table(result);
+            console.table("\n All Employees", result);
             askQuestions()
         })
     }
     if(answer === "View All Roles") {
         viewQueries.viewAllRoles().then(result => {
-            console.table(result);
+            console.table("\n All Roles", result);
             askQuestions()
         })
     }
     if(answer === "View All Departments") {
         viewQueries.viewAllDepartments().then(result => {
-            console.table(result);
+            console.table("\n All Departments", result);
             askQuestions()
         })
     }
@@ -48,6 +48,18 @@ function queryDB(answer) {
             askQuestions()
         })
     }
+    if(answer === "View Employees By Manager") {
+        viewQueries.viewEmployeesByManager().then((result) => {
+            console.table("\n Employees By Manager", result)
+            askQuestions()
+        })
+    }
+    if(answer === "View Salaries by Department") {
+        viewQueries.viewSalariesByDepartment().then((result) => {
+            console.table("\n Total Salaries By Department", result)
+            askQuestions()
+        })
+    }
 }
 
 
@@ -58,7 +70,7 @@ function askQuestions() {
                 name: 'nextAction',
                 type: 'list',
                 message: 'What would you like to do?',
-                choices: ["View All Employees", "View All Roles","View All Departments","Add Employee","Add Role","Add Department", "Update Employee Role",'Save and Quit']
+                choices: ["View All Employees", "View All Roles","View All Departments","Add Employee","Add Role","Add Department", "Update Employee Role", "View Employees By Manager", "View Salaries by Department" ,'Save and Quit']
             })
     .then(answer => {
         if (answer.nextAction == 'Save and Quit'){
