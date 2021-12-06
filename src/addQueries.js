@@ -20,13 +20,14 @@ const addRole = async () => {
     {
         name: 'dept',
         type: "list",
-        message: "What Dept does this role fall under?",
+        message: "What dept does this role fall into?",
         choices: deptArray,
         filter: val => (deptArray.indexOf(val) + 1)
-    }
+    },
     ])
     
     const {title, salary, dept} = response;
+    console.log(response)
     const [rows, fields] = await pool.query('INSERT INTO role(title, salary, department_id) VALUES (?,?,?)', [title, salary, dept])
 
     console.log(`successfully added ${title} to Roles`)
@@ -52,7 +53,7 @@ const addEmployee = async () => {
         {
             name: 'role',
             type: "list",
-            message: "What Dept does this role fall under?",
+            message: "What roll does this employoee do?",
             choices: roleArray,
             filter: val => (roleArray.indexOf(val) + 1)
         },
@@ -78,7 +79,21 @@ const addEmployee = async () => {
         console.log(`successfully added ${firstName} ${lastName} to Employees Table`)
 }
 
+const addDept = async () => {
+    const result = await inquirer.prompt({
+        name: 'name',
+        type: 'Input',
+        message: "What is the new Department's name?",
+        validate: val => val.length > 0 ? true : console.log("Please enter roles's name")
+    })
+
+    await pool.query("INSERT INTO departments(name) VALUES (?)", [result.name])
+
+    console.log(`successfully added ${result.name} to Department table`)
+}
+
 module.exports = {
     addRole,
-    addEmployee
+    addEmployee,
+    addDept
 }

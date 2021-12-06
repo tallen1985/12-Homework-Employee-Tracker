@@ -1,13 +1,13 @@
 const pool = require('../db/connection')
 
 const viewAllEmployees = async () => {
-    const [rows, fields] = await pool.query('SELECT employees.first_name, employees.last_name, role.title, departments.name AS "Department", salary, CONCAT(Manager.first_name, " ", Manager.last_name) AS Manager  FROM employees LEFT JOIN role ON employees.role_id = role.id JOIN departments ON role.department_id = departments.id LEFT JOIN employees AS Manager ON employees.manager_id = Manager.id'); 
+    const [rows, fields] = await pool.query('SELECT employees.id, employees.first_name, employees.last_name, role.title, departments.name AS "Department", salary, CONCAT(Manager.first_name, " ", Manager.last_name) AS Manager  FROM employees LEFT JOIN role ON employees.role_id = role.id JOIN departments ON role.department_id = departments.id LEFT JOIN employees AS Manager ON employees.manager_id = Manager.id'); 
 
     return rows
 }
 
 const viewAllRoles = async () => {
-    const [rows, fields] = await pool.query('SELECT title, salary, departments.name AS "Department"FROM role JOIN departments ON role.department_id = departments.id'); 
+    const [rows, fields] = await pool.query('SELECT role.id, title, salary, departments.name AS "Department"FROM role JOIN departments ON role.department_id = departments.id'); 
 
     return rows
 }
@@ -24,6 +24,7 @@ const getDeptNames = async () => {
     for (dept of rows){
         deptArray.push(dept.name)
     }
+    console.log(deptArray)
     return deptArray;
 }
 

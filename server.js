@@ -43,6 +43,11 @@ function queryDB(answer) {
             askQuestions()
         })
     }
+    if(answer === "Add Department") {
+        addQueries.addDept().then((result) => {
+            askQuestions()
+        })
+    }
 }
 
 
@@ -53,7 +58,7 @@ function askQuestions() {
                 name: 'nextAction',
                 type: 'list',
                 message: 'What would you like to do?',
-                choices: ["View All Employees", "Add Employee", "Update Employee Role", "View All Roles", "Add Role", "View All Departments", "Add Department", 'Save and Quit']
+                choices: ["View All Employees", "View All Roles","View All Departments","Add Employee","Add Role","Add Department", "Update Employee Role",'Save and Quit']
             })
     .then(answer => {
         if (answer.nextAction == 'Save and Quit'){
