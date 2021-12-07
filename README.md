@@ -34,7 +34,7 @@
   ## Screenshot and Links
   [GitHub Repository](https://github.com/tallen1985/12-Homework-Employee-Tracker)
 
-  [Link to Video](https://watch.screencastify.com/v/r5nziJSj8kkuafHIVjpU)
+  [Link to Video](https://drive.google.com/file/d/1eHQoVcbwauB0DYCya4xPPhxevLRFG1QA/view?usp=sharing)
   
   ![Screenshot](./screenshot.png)
   ## Questions
