@@ -3,7 +3,7 @@ const pool = require('../db/connection')
 
 //query to view all Employees
 const viewAllEmployees = async () => {
-    const [rows, fields] = await pool.query('SELECT employees.id, employees.first_name, employees.last_name, role.title, departments.name AS "Department", salary, CONCAT(Manager.first_name, " ", Manager.last_name) AS Manager  FROM employees LEFT JOIN role ON employees.role_id = role.id JOIN departments ON role.department_id = departments.id LEFT JOIN employees AS Manager ON employees.manager_id = Manager.id'); 
+    const [rows, fields] = await pool.query('SELECT employees.id, employees.first_name, employees.last_name, role.title, departments.name AS "Department", salary, CONCAT(Manager.first_name, " ", Manager.last_name) AS Manager  FROM employees LEFT JOIN role ON employees.role_id = role.id LEFT JOIN departments ON role.department_id = departments.id LEFT JOIN employees AS Manager ON employees.manager_id = Manager.id'); 
 
     return rows
 }
