@@ -1,3 +1,4 @@
+//load modules
 const cTable = require('console.table');
 const inquirer = require('inquirer');
 const asciiArt = require('./src/ascii');
@@ -7,7 +8,7 @@ const addQueries = require('./src/addQueries')
 const updateQueries = require('./src/updateQueries')
 require('dotenv').config()
 
-
+//process the answer to the recurring question and perform the choice
 function queryDB(answer) {
 
     if(answer === "View All Employees"){
@@ -62,9 +63,10 @@ function queryDB(answer) {
     }
 }
 
-
+//big fancy art at top of program
 console.log(asciiArt)
 
+//reoccuring function to keep program going
 function askQuestions() {
     inquirer.prompt({
                 name: 'nextAction',
@@ -73,6 +75,7 @@ function askQuestions() {
                 choices: ["View All Employees", "View All Roles","View All Departments","Add Employee","Add Role","Add Department", "Update Employee Role", "View Employees By Manager", "View Salaries by Department" ,'Save and Quit']
             })
     .then(answer => {
+        //if they answer 'save and quit' then kill the process and close file
         if (answer.nextAction == 'Save and Quit'){
             console.log('Goodbye')
             process.exit();
@@ -81,5 +84,5 @@ function askQuestions() {
         }
     })
 }
-
+//start the program
 askQuestions();

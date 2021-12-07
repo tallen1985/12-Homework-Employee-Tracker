@@ -1,23 +1,25 @@
+//load modules
 const pool = require('../db/connection')
 
+//query to view all Employees
 const viewAllEmployees = async () => {
     const [rows, fields] = await pool.query('SELECT employees.id, employees.first_name, employees.last_name, role.title, departments.name AS "Department", salary, CONCAT(Manager.first_name, " ", Manager.last_name) AS Manager  FROM employees LEFT JOIN role ON employees.role_id = role.id JOIN departments ON role.department_id = departments.id LEFT JOIN employees AS Manager ON employees.manager_id = Manager.id'); 
 
     return rows
 }
-
+//query to view all roles
 const viewAllRoles = async () => {
     const [rows, fields] = await pool.query('SELECT role.id, title, salary, departments.name AS "Department"FROM role JOIN departments ON role.department_id = departments.id'); 
 
     return rows
 }
-
+//query to view all departments
 const viewAllDepartments = async () => {
     const [rows, fields] = await pool.query('SELECT * FROM departments'); 
 
     return rows
 }
-
+//extra credit section!!!
 const viewEmployeesByManager = async () => {
     const [rows, fields] = await pool.query("select CONCAT(managers.first_name,' ', managers.last_name) as 'Manager Name', employees.first_name, employees.last_name from employees left join employees as managers on employees.manager_id = managers.id order by managers.id"); 
 
@@ -28,7 +30,7 @@ const viewSalariesByDepartment = async () => {
 
     return rows;
 }
-
+//query to get department names for addition queries
 const getDeptNames = async () => {
     const [rows, fields] = await pool.query('SELECT name FROM departments')
     const deptArray = []
@@ -38,7 +40,7 @@ const getDeptNames = async () => {
     console.log(deptArray)
     return deptArray;
 }
-
+//query to get role names for addition queries
 const getRoleNames = async () => {
     const [rows, fields] = await pool.query('SELECT title FROM role')
     const roleArray = []
@@ -47,7 +49,7 @@ const getRoleNames = async () => {
     }
     return roleArray;
 }
-
+//get employee names for addition queries
 const getEmployeeNames = async () => {
     const [rows, fields] = await pool.query('SELECT first_name, last_name FROM employees')
     const empArray = ['None']
@@ -56,7 +58,7 @@ const getEmployeeNames = async () => {
     }
     return empArray
 }
-
+//export functions
 module.exports = {
    viewAllEmployees,
    viewAllRoles,
